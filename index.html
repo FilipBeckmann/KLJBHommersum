@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KLJB Hommersum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #2d6a2e;
+      --gold:    #c8a84b;
+      --cream:   #faf6ee;
+      --dark:    #1a1a1a;
+      --muted:   #5a5a4a;
+      --card-bg: #ffffff;
+      --nav-bg:  #ffffff;
+      --border:  rgba(0,0,0,.08);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cream:   #1c1c1e;
+        --dark:    #f0f0f0;
+        --muted:   #aaaaaa;
+        --card-bg: #2a2a2c;
+        --nav-bg:  #1c1c1e;
+        --border:  rgba(255,255,255,.08);
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-weight: 300;
+      line-height: 1.7;
+      transition: background .3s, color .3s;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 18px,
+        rgba(255,255,255,.04) 18px,
+        rgba(255,255,255,.04) 36px
+      );
+    }
+    .cross {
+      font-size: 2rem;
+      color: var(--gold);
+      display: block;
+      margin-bottom: .5rem;
+      animation: fadeDown .6s ease both;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -.5px;
+      line-height: 1.1;
+      animation: fadeDown .7s .1s ease both;
+    }
+    header p {
+      margin-top: .6rem;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.75);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 400;
+      animation: fadeDown .7s .2s ease both;
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--nav-bg);
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+    nav a {
+      padding: .9rem 1.6rem;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: .9rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    nav a:hover { color: var(--green); border-color: var(--green); }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+    section + section { border-top: 1px solid var(--border); }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--green);
+      margin-bottom: 1.6rem;
+      position: relative;
+      padding-bottom: .7rem;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 48px; height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    /* ── KONTAKT KARTEN ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+    .contact-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.4rem 1.2rem;
+      border-left: 4px solid var(--gold);
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+    .contact-card .label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: .3rem;
+    }
+    .contact-card a { color: var(--green); text-decoration: none; font-weight: 600; }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* ── SOCIAL ── */
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: transform .15s, box-shadow .15s;
+      color: #fff;
+    }
+    .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+    .social-btn svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+    .fb   { background: #1877f2; }
+    .ig   { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); }
+    .tt   { background: #010101; }
+
+    /* ── IMPRESSUM ── */
+    .impressum-box {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      font-size: .95rem;
+      color: var(--muted);
+    }
+    .impressum-box strong { color: var(--dark); }
+    .impressum-box p { margin-bottom: .8rem; }
+    .impressum-box p:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo.jpg" alt="KLJB Hommersum Logo" style="height:80px; margin-bottom:.8rem; display:block; margin-left:auto; margin-right:auto;" />
+  <h1>KLJB Hommersum</h1>
+  <p>Katholische Landjugendbewegung &nbsp;·&nbsp; Eine Gemeinschaft</p>
+</header>
+
+<nav>
+  <a href="#kontakt">Kontakt</a>
+  <a href="#social">Social Media</a>
+  <a href="#impressum">Impressum</a>
+</nav>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <h2>Kontakt</h2>
+  <p>Ihr erreicht uns direkt per E-Mail oder findet uns in Hommersum. Für aktuelle Infos und Veranstaltungen schaut auf unsere Social-Media-Kanäle!</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="label">Adresse</div>
+      Küsterskamp 19<br>47574 Goch / Hommersum
+    </div>
+    <div class="contact-card">
+      <div class="label">Telefon</div>
+      <a href="tel:+4917121339985">+49 171 2133985</a>
+    </div>
+    <div class="contact-card">
+      <div class="label">E-Mail</div>
+      <a href="/cdn-cgi/l/email-protection#fb92959d94bb90979199939496969e89888e96d59f9e"><span class="__cf_email__" data-cfemail="345d5a525b745f585e565c5b595951464741591a5051">[email&#160;protected]</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL MEDIA -->
+<section id="social">
+  <h2>Wir sind auf Social Media</h2>
+  <p>Folgt uns auf unseren Kanälen – dort findet ihr aktuelle Beiträge, Fotos von Veranstaltungen und alle wichtigen Infos zur KLJB Hommersum.</p>
+  <div class="social-grid">
+    <a class="social-btn fb" href="https://www.facebook.com/kljbhommersum19" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.271h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a class="social-btn ig" href="https://www.instagram.com/kljbhommersum/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+    <a class="social-btn tt" href="https://www.tiktok.com/@kljbhommersum" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.27 8.27 0 004.84 1.55V6.85a4.85 4.85 0 01-1.07-.16z"/></svg>
+      TikTok
+    </a>
+  </div>
+</section>
+
+<!-- IMPRESSUM -->
+<section id="impressum">
+  <h2>Impressum</h2>
+  <div class="impressum-box">
+    <p><strong>Angaben gemäß § 5 TMG</strong></p>
+    <p>
+      <strong>KLJB Hommersum</strong><br>
+      Katholische Landjugendbewegung<br>
+      Küsterskamp 19<br>
+      47574 Goch (Ortsteil Hommersum)
+    </p>
+    <p>
+      <strong>Vertreten durch:</strong><br>
+      <!-- ⚠️ BITTE HIER DEN/DIE AKTUELLE(N) VORSTANDSVORSITZENDE(N) EINTRAGEN -->
+      [Neil Dugal] (1. Vorsitzende/r)
+    </p>
+    <p>
+      <strong>Kontakt:</strong><br>
+      Telefon: +49 171 2133985<br>
+      E-Mail: <a href="/cdn-cgi/l/email-protection#7811161e17381314121a101715151d0a0b0d15561c1d" style="color:var(--green)"><span class="__cf_email__" data-cfemail="21484f474e614a4d4b43494e4c4c445352544c0f4544">[email&#160;protected]</span></a>
+    </p>
+    <p>
+      <strong>Inhaltlich Verantwortliche/r gemäß § 55 Abs. 2 RStV:</strong><br>
+      <!-- ⚠️ BITTE HIER DEN/DIE INHALTLICH VERANTWORTLICHE(N) EINTRAGEN -->
+      [Neil Dugal], Küsterskamp 19, 47574 Goch
+      [Finn Jacobs], Küsterskamp 19, 47574 Goch
+      [Filip Beckmann], Küsterskamp 19, 47574 Goch
+    </p>
+    <p>
+      <strong>Haftungsausschluss:</strong><br>
+      Die KLJB Hommersum ist nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Bei bekannt werden von Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+    </p>
+    <p>
+      <strong>Datenschutz:</strong><br>
+      Diese Website erhebt und speichert keine personenbezogenen Daten. Es werden keine Cookies gesetzt und keine Tracking-Tools eingesetzt.
+    </p>
+    <p style="margin-top:1.2rem; font-size:.85rem; color:#999">
+      Streitschlichtung: Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+      <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener" style="color:var(--green)">ec.europa.eu/consumers/odr</a>.<br>
+      Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtu
